@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de hora de salida</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Calculadora de hora de salida 15 de septiembre MC</h1>
+        
+        <div class="form-group">
+            <label for="horaInicio">Hora de inicio de trabajo:</label>
+            <input type="time" class="form-control" id="horaInicio">
+        </div>
+        
+        <button class="btn btn-primary" onclick="calcularHoraSalida()">Calcular hora de salida</button>
+        
+        <p class="mt-3">La hora de salida será: <span id="horaSalida"></span></p>
+        
+        <button class="btn btn-secondary">Voy a comer</button>
+    </div>
+    
+    <script>
+        function calcularHoraSalida() {
+            const horaInicioInput = document.getElementById('horaInicio');
+            const horaSalidaSpan = document.getElementById('horaSalida');
+            
+            const horaInicio = horaInicioInput.value;
+            const horaInicioDate = new Date(`2023-09-15T${horaInicio}:00`);
+            
+            // Sumar 6 horas
+            horaInicioDate.setHours(horaInicioDate.getHours() + 6);
+            
+            // Obtener la hora y los minutos en formato HH:MM
+            const horaSalida = horaInicioDate.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+            
+            horaSalidaSpan.textContent = horaSalida;
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
